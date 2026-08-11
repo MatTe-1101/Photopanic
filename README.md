@@ -62,6 +62,6 @@ Nominatim requires light usage, an identifiable `User-Agent`, and attribution to
 
 `.jpg`, `.jpeg`, `.png`, `.heic`, `.heif`, `.tif`, `.tiff`, `.webp`
 
-##Support Photopanic
+## Support Photopanic
 
 If you find Photopanic useful, consider supporting the project: [Buy Me a Coffee](https://buymeacoffee.com/matte_1101)
