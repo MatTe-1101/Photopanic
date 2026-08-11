@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check src/main.js && node --check src/preload.js && node --check src/renderer.js",
+    "package:win": "electron-packager . Photopanic --platform=win32 --arch=x64 --out=dist --overwrite",
+    "package:linux": "electron-packager . Photopanic --platform=linux --arch=x64 --out=dist --overwrite",
+    "package:mac": "electron-packager . Photopanic --platform=darwin --arch=x64,arm64 --out=dist --overwrite",
+    "package:all": "electron-packager . Photopanic --platform=win32,linux,darwin --arch=x64 --out=dist --overwrite"
+  },
+  "dependencies": {
+    "exifr": "latest"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.2.1",
+    "electron": "^43.3.0"
+  },
+  "main": "src/main.js",
+  "name": "photopanic-photo-organizer",
+  "version": "0.1.0",
+  "description": "Windows desktop app to organize phone photos by date and place metadata.",
+  "private": true
+}

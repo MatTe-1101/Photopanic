@@ -1,0 +1,90 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photopanic - Photo organizer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">P</div>
+        <div><strong>Photopanic</strong><span>Photo organizer</span></div>
+      </div>
+      <ol class="steps" aria-label="Avanzamento procedura">
+        <li class="step active" data-step-button="0"><span>1</span><strong>Percorsi</strong></li>
+        <li class="step" data-step-button="1"><span>2</span><strong>Metadati</strong></li>
+        <li class="step" data-step-button="2"><span>3</span><strong>Organizza</strong></li>
+      </ol>
+      <button id="coffee" class="coffee">Buy me a coffee</button>
+    </aside>
+
+    <div class="content-column">
+      <section class="workspace">
+        <header class="topbar">
+          <p class="eyebrow">Organizzazione foto</p>
+          <h1>Organizza le foto per data e luogo.</h1>
+          <p>Seleziona le cartelle di origine, scegli la destinazione e avvia la creazione automatica della struttura anno/mese/luogo.</p>
+        </header>
+
+        <section class="panel active" data-panel="0">
+          <div class="panel-head"><span class="badge">Step 1</span><h2>Scegli le cartelle</h2><p>Seleziona una o più cartelle di partenza e una cartella di destinazione.</p></div>
+          <div class="card-stack">
+            <div class="chooser-card">
+              <div><h3>Cartelle origine</h3><p id="sourceCount">Nessuna cartella selezionata.</p></div>
+              <button id="pickSources" class="primary">Aggiungi cartelle</button>
+            </div>
+            <div id="sourceList" class="path-list"></div>
+            <div class="chooser-card">
+              <div><h3>Cartella destinazione</h3><p id="destinationLabel">Nessuna destinazione selezionata.</p></div>
+              <button id="pickDestination">Scegli destinazione</button>
+            </div>
+            <div class="mode-card">
+              <label><input type="radio" name="mode" value="copy" checked /> <span><strong>Copia</strong><small>Mantiene i file originali nelle cartelle di origine.</small></span></label>
+              <label><input type="radio" name="mode" value="move" /> <span><strong>Sposta</strong><small>Trasferisce i file nella cartella di destinazione.</small></span></label>
+            </div>
+          </div>
+          <footer class="panel-actions"><button class="ghost" disabled>Indietro</button><button id="toMetadata" class="primary">Continua</button></footer>
+        </section>
+
+        <section class="panel" data-panel="1">
+          <div class="panel-head"><span class="badge">Step 2</span><h2>Controllo metadati</h2><p>Verifica numero di foto, data di acquisizione e disponibilità dei dati di posizione.</p></div>
+          <div class="metadata-grid">
+            <article class="info-card"><span>Foto trovate</span><strong id="photoTotal">—</strong></article>
+            <article class="info-card"><span>Luoghi</span><strong id="placeStatus">Non analizzato</strong></article>
+            <article class="info-card"><span>Campo data</span><strong id="dateField">—</strong></article>
+          </div>
+          <div id="sampleBox" class="sample-card muted">Premi “Analizza metadati” per controllare un campione di foto.</div>
+          <label id="placeToggleWrap" class="toggle-card disabled"><input id="organizeByPlace" type="checkbox" disabled /> <span><strong>Dividi anche per luogo</strong><small id="placeToggleText">Non disponibile finché non vengono trovati metadati luogo o GPS.</small></span></label>
+          <p class="attribution">La conversione GPS usa OpenStreetMap/Nominatim e richiede una connessione internet. Se il servizio non è raggiungibile, le foto vengono organizzate solo per anno e mese.</p>
+          <footer class="panel-actions"><button data-back>Indietro</button><button id="scan" class="primary">Analizza metadati</button><button id="toOrganize" disabled>Continua</button></footer>
+        </section>
+
+        <section class="panel" data-panel="2">
+          <div class="panel-head"><span class="badge">Step 3</span><h2>Organizzazione</h2><p>Avvia la copia o lo spostamento dei file nella struttura di destinazione.</p></div>
+          <div class="progress-wrap">
+            <div class="ring"><span id="progressPercent">0%</span></div>
+            <div class="progress-copy"><strong id="progressTitle">In attesa</strong><p id="progressText">Avvia l’organizzazione per iniziare.</p><div class="progress-bar"><div id="progressFill"></div></div></div>
+          </div>
+          <div id="previewStrip" class="preview-strip"></div>
+          <footer class="panel-actions"><button data-back>Indietro</button><button id="cancel" disabled>Annulla</button><button id="start" class="primary">Organizza foto</button></footer>
+        </section>
+      </section>
+
+      <section class="search-section">
+        <div class="panel-head"><span class="badge">Ricerca</span><h2>Cerca foto organizzate</h2><p>Consulta l’indice creato nella cartella di destinazione per luogo, data o nome file.</p></div>
+        <div class="search-grid">
+          <input id="searchPlace" placeholder="Luogo, es. Roma" />
+          <input id="searchDate" placeholder="Data: 2026, 2026-03 o 2026-03-09" />
+          <input id="searchTerm" placeholder="Nome file" />
+          <button id="search" class="primary">Cerca</button>
+        </div>
+        <div id="results" class="results"></div>
+      </section>
+    </div>
+  </main>
+  <script src="renderer.js"></script>
+</body>
+</html>

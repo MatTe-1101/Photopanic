@@ -1,0 +1,4 @@
+﻿node_modules/
+dist/
+.photopanic-index.json
+npm-debug.log*
