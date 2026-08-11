@@ -1,63 +1,64 @@
-﻿# Photopanic - Photo organizer
+# Photopanic - Photo Organizer
 
-App desktop Windows per organizzare foto del telefono in cartelle basate sui metadati.
+Windows desktop app for organizing phone photos into folders based on metadata.
 
-## Funzioni
+## Features
 
-- Selezione di una o più cartelle origine e una cartella destinazione.
-- Interfaccia guidata step-by-step: percorsi, metadati, organizzazione.
-- Area ricerca separata dalla procedura guidata.
-- Lettura metadati EXIF/XMP/IPTC con priorità su `DateTimeOriginal`, poi campi data alternativi.
-- Controllo iniziale su un campione di foto prima di procedere.
-- Rilevamento luoghi più chiaro: nomi luogo se presenti nei metadati, oppure conversione online delle coordinate GPS.
-- Opzione “Dividi anche per luogo” abilitata solo quando sono disponibili metadati luogo/GPS.
-- Se non c’è connessione internet o il servizio luoghi non risponde, Photopanic avvisa e organizza solo per anno/mese.
-- Creazione automatica struttura `anno/mese/luogo`, per esempio `2026/03/Milano/foto.jpeg`.
-- Fallback alla sola cartella mese se il luogo non è presente o se l’opzione luogo è disattivata.
-- Copia o spostamento dei file.
-- Barra di avanzamento con anteprime casuali delle foto.
-- Indice `.photopanic-index.json` nella destinazione e ricerca per luogo, coordinate GPS, data o nome file.
-- Pulsante “Buy me a coffee”.
+* Selection of one or more source folders and a destination folder.
+* Step-by-step guided interface: paths, metadata, organization.
+* Search area separate from the guided workflow.
+* EXIF/XMP/IPTC metadata reading, prioritizing `DateTimeOriginal`, followed by alternative date fields.
+* Initial check on a sample of photos before proceeding.
+* Clearer location detection: location names when available in metadata, or online conversion of GPS coordinates.
+* “Also split by location” option enabled only when location/GPS metadata is available.
+* If there is no internet connection or the location service does not respond, Photopanic warns the user and organizes photos by year/month only.
+* Automatic creation of `year/month/location` folder structure, for example `2026/03/Milan/photo.jpeg`.
+* Fallback to the month folder only if the location is unavailable or the location option is disabled.
+* File copying or moving.
+* Progress bar with random photo previews.
+* `.photopanic-index.json` index in the destination folder, with search by location, GPS coordinates, date, or filename.
+* “Buy me a coffee” button.
 
-## Avvio
+## Getting Started
 
 ```powershell
 npm install
 npm start
 ```
 
-## Build Windows
+## Windows Build
 
 ```powershell
 npm run package:win
 ```
 
-## Build Linux
+## Linux Build
 
 ```powershell
 npm run package:linux
 ```
 
-## Build macOS
+## macOS Build
 
 ```powershell
 npm run package:mac
 ```
 
-## Build multipiattaforma
+## Cross-Platform Build
 
 ```powershell
 npm run package:all
 ```
 
-Nota: la build macOS generata da Windows può essere utile per test preliminari, ma firma, notarizzazione e distribuzione finale richiedono normalmente macOS.
+Note: the macOS build generated from Windows can be useful for preliminary testing, but signing, notarization, and final distribution normally require macOS.
 
-## Note sui luoghi
+## Location Notes
 
-Molti telefoni salvano solo coordinate GPS, non il nome della città. Photopanic converte quelle coordinate in città/area usando Nominatim di OpenStreetMap, con cache interna e limite di una richiesta al secondo. Se la conversione non è disponibile, non crea cartelle GPS grezze: mette le foto direttamente nella cartella del mese.
+Many phones store only GPS coordinates, not the city name. Photopanic converts those coordinates into a city/area using OpenStreetMap's Nominatim service, with an internal cache and a limit of one request per second. If the conversion is unavailable, it does not create raw GPS folders: the photos are placed directly in the month folder.
 
-Nominatim richiede un uso leggero, un `User-Agent` identificabile e attribuzione a OpenStreetMap. Per raccolte molto grandi o uso commerciale conviene configurare un provider dedicato o una propria istanza.
+Nominatim requires light usage, an identifiable `User-Agent`, and attribution to OpenStreetMap. For very large collections or commercial use, it is recommended to configure a dedicated provider or your own instance.
 
-## File supportati
+## Supported File Types
 
 `.jpg`, `.jpeg`, `.png`, `.heic`, `.heif`, `.tif`, `.tiff`, `.webp`
+
